@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Introducción a Git</title>
+    <meta name="description" content="Curso introducción a git">
+    <meta name="author" content="raulanatol">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/moon.css" id="theme">
+    <link rel="stylesheet" href="css/zenburn.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if (window.location.search.match(/print-pdf/gi)) {
+        var link = document.createElement('link');
+
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+      }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h2>Stash</h2>
+          <div style="background-color: rgb(20, 98, 135); width: 90%; height: 500%; position: absolute; top: -100%; left: -45%; z-index: -1;">
+          </div>
+          <div class="fragment">
+            <div style="width: 44%; display: inline-block; margin-right: 5%; vertical-align: top;">
+              <pre><code class="hljs" data-trim>
+                $ git stash save [msg]
+              </code></pre>
+            </div>
+            <div style="width: 50%; display: inline-block;">
+              <pre><code>Guardamos los cambios del workspace</code></pre>
+            </div>
+          </div>
+          <div class="fragment">
+            <div style="width: 44%; display: inline-block; margin-right: 5%; vertical-align: top;">
+              <pre><code class="hljs" data-trim>
+                $ git stash list
+              </code></pre>
+            </div>
+            <div style="width: 50%; display: inline-block;">
+              <pre><code>Mostramos los stash creados</code></pre>
+            </div>
+          </div>
+          <div class="fragment">
+            <div style="width: 44%; display: inline-block; margin-right: 5%; vertical-align: top;">
+              <pre><code class="hljs" data-trim>
+                $ git stash show [stash]
+              </code></pre>
+            </div>
+            <div style="width: 50%; display: inline-block;">
+              <pre><code>Mostramos un stash</code></pre>
+            </div>
+          </div>
+          <div class="fragment">
+            <div style="width: 44%; display: inline-block; margin-right: 5%; vertical-align: top;">
+              <pre><code class="hljs" data-trim>
+                $ git stash apply [stash]
+              </code></pre>
+            </div>
+            <div style="width: 50%; display: inline-block;">
+              <pre style="margin-bottom: 0"><code>Aplicamos los cambios desde</code></pre>
+              <pre style="margin-top: 0"><code>un stash (no lo borra)</code></pre>
+            </div>
+          </div>
+          <div class="fragment">
+            <div style="width: 44%; display: inline-block; margin-right: 5%; vertical-align: top;">
+              <pre><code class="hljs" data-trim>
+                $ git stash pop
+              </code></pre>
+            </div>
+            <div style="width: 50%; display: inline-block;">
+              <pre style="margin-bottom: 0"><code>Aplicamos los cambios desde</code></pre>
+              <pre style="margin-top: 0"><code>el primer stash de la lista</code></pre>
+            </div>
+          </div>
+          <div class="fragment">
+            <div style="width: 44%; display: inline-block; margin-right: 5%; vertical-align: top;">
+              <pre><code class="hljs" data-trim>
+                $ git stash drop [stash]
+              </code></pre>
+            </div>
+            <div style="width: 50%; display: inline-block;">
+              <pre><code>Borramos un stash específico</code></pre>
+            </div>
+          </div>
+          <div class="fragment">
+            <div style="width: 44%; display: inline-block; margin-right: 5%; vertical-align: top;">
+              <pre><code class="hljs" data-trim>
+                $ git stash clear
+              </code></pre>
+            </div>
+            <div style="width: 50%; display: inline-block;">
+              <pre><code>Borramos todo el stash</code></pre>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>Trabajando con Git - Modo remoto</h2>
+          <img class="fragment simple" src="assets/remote/remote_01.png"/>
+        </section>
+        <section>
+          <h2>Estados en Git</h2>
+          <div class="fragment">
+            <div class="back-color-blue" style="position: absolute; width: 21%; left: 14%; height: 390%; z-index: -1;">
+              <p style="color: white"><b>Workspace</b></p>
+            </div>
+            <div style="background-color: #146287; position: absolute; width: 21%; height: 390%; left: 36%; z-index: -1;">
+              <p style="color: white"><b>Index</b></p>
+              <em style="color: white">(Stage)</em>
+            </div>
+            <div style="background-color: #146287; position: absolute; width: 15%; height: 390%; left: -2%; z-index: -1;">
+              <p style="color: white"><b>Stash</b></p>
+            </div>
+            <div style="background-color: #146287; position: absolute; width: 21%; height: 390%; left: 58%; z-index: -1;">
+              <p style="color: white"><b>HEAD</b></p>
+              <em style="color: white">(local repo)</em>
+            </div>
+          </div>
+          <div class="fragment" style="background-color: #f99157; position: absolute; width: 21%; height: 390%; left: 80%; z-index: -1;">
+            <p style="color: white"><b>Upstream</b></p>
+            <em style="color: white">(remote repo)</em>
+          </div>
+        </section>
+        <section>
+          <h2>Trabajando con remote</h2>
+          <div style="background-color: rgb(20, 98, 135); width: 90%; height: 500%; position: absolute; top: -100%; left: -45%; z-index: -1;">
+          </div>
+          <div class="fragment">
+            <div style="width: 44%; display: inline-block; margin-right: 5%; vertical-align: top;">
+              <pre><code class="hljs" data-trim>
+                $ git remote
+              </code></pre>
+            </div>
+            <div style="width: 50%; display: inline-block;">
+              <pre><code>Listamos todos los repos remotos</code></pre>
+            </div>
+          </div>
+          <div class="fragment">
+            <div style="width: 44%; display: inline-block; margin-right: 5%; vertical-align: top;">
+              <pre><code class="hljs" data-trim>
+                $ git remote -v
+              </code></pre>
+            </div>
+            <div style="width: 50%; display: inline-block;">
+              <pre style="margin-bottom: 0"><code>Listamos todos los repos remotos</code></pre>
+              <pre style="margin-top: 0"><code>con sus urls</code></pre>
+            </div>
+          </div>
+          <div class="fragment">
+            <div style="width: 44%; display: inline-block; margin-right: 5%; vertical-align: top;">
+              <pre><code class="hljs" data-trim>
+                $ git remote add [name] [url]
+              </code></pre>
+            </div>
+            <div style="width: 50%; display: inline-block;">
+              <pre><code>Añadir un nuevo remote</code></pre>
+            </div>
+          </div>
+          <div class="fragment">
+            <div style="width: 44%; display: inline-block; margin-right: 5%; vertical-align: top;">
+              <pre><code class="hljs" data-trim>
+                $ git remote rm [name]
+              </code></pre>
+            </div>
+            <div style="width: 50%; display: inline-block;">
+              <pre><code>Eliminar un remote</code></pre>
+            </div>
+          </div>
+          <div class="fragment">
+            <div style="width: 44%; display: inline-block; margin-right: 5%; vertical-align: top;">
+              <pre><code class="hljs" data-trim>
+                $ git remote rename [old] [new]
+              </code></pre>
+            </div>
+            <div style="width: 50%; display: inline-block;">
+              <pre><code>Renombrar un remote</code></pre>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>Trabajando con remote</h2>
+          <div style="background-color: rgb(20, 98, 135); width: 90%; height: 500%; position: absolute; top: -100%; left: -45%; z-index: -1;">
+          </div>
+          <div class="fragment">
+            <div style="width: 44%; display: inline-block; margin-right: 5%; vertical-align: top;">
+              <pre><code class="hljs" data-trim>
+                $ git push
+              </code></pre>
+            </div>
+            <div style="width: 50%; display: inline-block;">
+              <pre class="double-first"><code>Subir el contenido de HEAD</code></pre>
+              <pre class="double"><code>al remote</code></pre>
+            </div>
+          </div>
+          <div class="fragment">
+            <div style="width: 44%; display: inline-block; margin-right: 5%; vertical-align: top;">
+              <pre><code class="hljs" data-trim>
+                $ git push [remote] [branch]
+              </code></pre>
+            </div>
+            <div style="width: 50%; display: inline-block;">
+              <pre class="double-first" style="margin-bottom: 0"><code>Subir el contenido de HEAD</code></pre>
+              <pre class="double" style="margin-top: 0"><code>al remote [remote]</code></pre>
+              <pre class="double" style="margin-top: 0"><code>y al branch [branch]</code></pre>
+            </div>
+          </div>
+          <div class="fragment">
+            <div style="width: 44%; display: inline-block; margin-right: 5%; vertical-align: top;">
+              <pre><code class="hljs" data-trim>
+                $ git fetch
+              </code></pre>
+            </div>
+            <div style="width: 50%; display: inline-block;">
+              <pre class="double-first"><code>Para SINCRONIZAR los cambios con el remote</code></pre>
+              <pre class="double"><code>remote (no modifica)</code></pre>
+            </div>
+          </div>
+          <div class="fragment">
+            <div style="width: 44%; display: inline-block; margin-right: 5%; vertical-align: top;">
+              <pre><code class="hljs" data-trim>
+                $ git pull
+              </code></pre>
+            </div>
+            <div style="width: 50%; display: inline-block;">
+              <pre><code>Descargamos los cambios del remote</code></pre>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>Pull request</h2>
+          <div>
+            <div class="fragment">
+              <pre style="width: 57%"><code style="text-align: center">$ git request-pull &#60;start&#62; &#60;url&#62; [&#60;end&#62;]</code></pre>
+            </div>
+            <div class="fragment">
+              <pre><code>$ git request-pull v1 https://my.git.com/proyecto_1 master</code></pre>
+              <br/>
+              <br/>
+            </div>
+          </div>
+          <img class="simple" style="width: 25%; height: 25%" src="assets/pull_request.gif"/>
+        </section>
+        <section data-background="assets/workflows/workflow2.jpg">
+          <h2 style="color: #000">Workflows</h2>
+          <div>
+            <img class="simple fragment" style="width: 49%; height: 49%" src="assets/workflows/teamwork.png"/>
+            <img class="simple fragment" style="width: 49%; height: 49%" src="assets/workflows/safety.jpg"/>
+          </div>
+        </section>
+        <section>
+          <h2>Flujo centralizado</h2>
+          <img class="simple" style="width: 50%; height: 50%" src="assets/workflows/flujo_centralizado.png"/>
+        </section>
+        <section>
+          <h2>Flujo con integrador</h2>
+          <img class="simple" style="width: 50%; height: 50%" src="assets/workflows/integrador.png"/>
+        </section>
+        <section>
+          <h2>Flujo con integrador</h2>
+          <img class="simple" style="width: 50%; height: 50%" src="assets/workflows/integrador_2.png"/>
+        </section>
+        <section>
+          <h2>Flujo de dictadores y tenientes</h2>
+          <a target="_blank" href="assets/workflows/dictator.png">
+            <img class="simple" style="width: 25%; height: 25%" src="assets/workflows/dictator.png"/>
+          </a>
+        </section>
+        <section>
+          <h2>Git-flow</h2>
+          <h3 class="fragment">Conceptos clave</h3>
+          <div class="two-column-left">
+            <p class="fragment">Entornos de despliegue</p>
+            <p class="fragment">Feature</p>
+            <p class="fragment">Release</p>
+          </div>
+          <div class="two-column-right">
+            <p class="fragment">Bug</p>
+            <p class="fragment">Version</p>
+          </div>
+        </section>
+        <section>
+          <h2>Git-flow cheatsheet</h2>
+          <a target="_blank" href="https://danielkummer.github.io/git-flow-cheatsheet/index.es_ES.html">git-flow cheatsheet</a>
+        </section>
+        <section>
+          <h2>Github ¿Qué es?</h2>
+          <div>
+            <img class="simple fragment" style="width: 49%; height: 49%" src="assets/github.png"/>
+            <a target="_blank" href="https://github.com/torvalds">
+              <img class="simple fragment" style="width: 49%; height: 49%" src="assets/torvalds.png"/>
+            </a>
+          </div>
+        </section>
+        <section>
+          <h2>Crear usuario de Github</h2>
+          <a target="_blank" href="https://github.com/join">Github Join</a>
+          <div class="fragment">
+            Configurando nuestro perfil
+            <a target="_blank" href="https://github.com/settings/profile">Settings</a>
+          </div>
+          <div class="fragment">
+            Creando nuestro repositorio
+            <a target="_blank" href="https://github.com/new">New repository</a>
+          </div>
+          <div class="fragment">
+            Hacer commits en proyectos
+          </div>
+          <div class="fragment">
+            Clone
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script src="js/main.js"></script>
+
+  </body>
+</html>
